@@ -217,11 +217,11 @@
   .pf-foot{font-size:.75rem;color:#8a93a1;text-align:right;margin-top:16px}
 
   /* 휴대폰 화면 */
-  @media (max-width:900px){
+  @media screen and (max-width:900px){
     .flow{grid-template-columns:repeat(3,1fr)}
     .fields{grid-template-columns:1fr 1fr}
   }
-  @media (max-width:820px){
+  @media screen and (max-width:820px){
     .menu{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
     .menu.open{display:flex}
     .menu a{padding:16px 20px;border-top:1px solid var(--line)}
@@ -249,11 +249,12 @@
     .pf-dl{grid-template-columns:1fr;gap:2px}
     .pf-dl dd{margin-bottom:8px}
   }
-  @media (max-width:420px){
+  @media screen and (max-width:420px){
     .flow,.fields{grid-template-columns:1fr}
   }
   @media print{
     @page{size:A4;margin:11mm}
+    html.portfolio-mode,html.portfolio-mode body{background:#fff!important}
     html.portfolio-mode #portfolio-page{padding:0;background:#fff}
     .pf-toolbar,.pf-tip{display:none}
     .pf-sheet{max-width:none;margin:0;border-radius:0;box-shadow:none;break-after:page}
