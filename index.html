@@ -181,6 +181,14 @@
   textarea{min-height:100px;resize:vertical}
   form button{background:var(--coral);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s}
   form button:hover{background:#ed684a}
+  .send-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  form button.send{padding:14px;border-radius:12px;border:0;font:inherit;font-weight:700;cursor:pointer;color:#fff}
+  form button.send.sms{background:var(--coral)}
+  form button.send.sms:hover{background:#ed684a}
+  form button.send.mail{background:var(--navy)}
+  form button.send.mail:hover{background:#1a2a35}
+  form button.copy-link{background:none;color:var(--soft);padding:4px;font-weight:500;font-size:.88rem;text-decoration:underline}
+  form button.copy-link:hover{background:none;color:var(--ink)}
   .copy-note{font-size:.8rem;color:var(--soft)}
   .msg{font-size:.9rem;color:var(--mint);font-weight:700;min-height:1.2em}
 
@@ -520,8 +528,9 @@
           <a class="link-box k2" href="https://blog.naver.com/kmc1500" target="_blank" rel="noopener"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h10M7 17h6"/></svg></span><span class="link-title">네이버 블로그<small>강의 후기 둘러보기</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
         </div>
         <form class="reveal" id="form">
-          <div class="form-heading"><h3>문의 내용 미리 작성하기</h3><p>아래 내용을 작성해 복사한 뒤, 문자·이메일·DM으로 보내 주세요.</p></div>
+          <div class="form-heading"><h3>문의 내용 작성하기</h3><p>작성 후 버튼을 누르면 문자나 메일 앱이 내용이 채워진 상태로 열려요. 전송만 눌러 주세요.</p></div>
           <div><label for="org">기관명</label><input id="org" placeholder="예) ○○청년센터" required></div>
+          <div><label for="who">담당자 성함·연락처</label><input id="who" placeholder="예) 홍길동 / 010-0000-0000"></div>
           <div><label for="type">희망 강의</label>
             <select id="type">
               <option>01 버크만 진단으로 알아보는 나의 흥미와 진로</option>
@@ -535,8 +544,12 @@
               <option>기타 / 상담 후 결정</option>
             </select></div>
           <div><label for="memo">문의 내용</label><textarea id="memo" placeholder="대상, 인원, 희망 날짜, 장소를 적어 주세요"></textarea></div>
-          <button type="submit">문의 내용 복사하기</button>
-          <p class="copy-note">복사 버튼은 메시지를 자동으로 전송하지 않습니다.</p>
+          <div class="send-btns">
+            <button type="button" id="sendSms" class="send sms">문자로 보내기</button>
+            <button type="button" id="sendMail" class="send mail">이메일로 보내기</button>
+          </div>
+          <button type="button" id="copyBtn" class="copy-link">내용만 복사하기 (인스타그램 DM용)</button>
+          <p class="copy-note">버튼을 눌러도 자동으로 전송되지 않아요. 열린 앱에서 전송을 눌러야 문의가 도착해요.</p>
           <p class="msg" id="msg" role="status"></p>
         </form>
       </div>
@@ -684,18 +697,39 @@
   show(0);
   setInterval(() => show((idx + 1) % voices.length), 4500);
 
-  document.getElementById('form').addEventListener('submit', e => {
-    e.preventDefault();
-    const text = '[강의 문의]\n기관명: ' + document.getElementById('org').value +
-      '\n희망 강의: ' + document.getElementById('type').value +
-      '\n내용: ' + document.getElementById('memo').value;
-    const msg = document.getElementById('msg');
+  const PHONE = '01028618616', EMAIL = 'kmc1050@gmail.com';
+  const msgEl = document.getElementById('msg');
+  const val = id => document.getElementById(id).value.trim();
+  function buildText(){
+    return '[강의 문의]\n기관명: ' + val('org') +
+      '\n담당자: ' + (val('who') || '-') +
+      '\n희망 강의: ' + val('type') +
+      '\n내용: ' + (val('memo') || '-');
+  }
+  function ready(){
+    if(!val('org')){ msgEl.style.color = 'var(--coral)'; msgEl.textContent = '기관명을 적어 주세요.'; document.getElementById('org').focus(); return false; }
+    msgEl.style.color = ''; return true;
+  }
+  document.getElementById('sendSms').addEventListener('click', () => {
+    if(!ready()) return;
+    const sep = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) ? '&' : '?';
+    location.href = 'sms:' + PHONE + sep + 'body=' + encodeURIComponent(buildText());
+    msgEl.textContent = '문자 앱이 열리면 전송을 눌러 주세요. (휴대폰에서 가능해요)';
+  });
+  document.getElementById('sendMail').addEventListener('click', () => {
+    if(!ready()) return;
+    const subject = '[강의 문의] ' + val('org') + ' - ' + val('type');
+    location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(buildText());
+    msgEl.textContent = '메일 앱이 열리면 전송을 눌러 주세요. 열리지 않으면 ' + EMAIL + ' 로 보내 주세요.';
+  });
+  document.getElementById('form').addEventListener('submit', e => e.preventDefault());
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    if(!ready()) return;
+    const text = buildText();
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => { msg.textContent = '복사됐어요! 문자, 이메일, 인스타그램 DM으로 보내 주세요.'; })
-        .catch(() => { msg.textContent = '복사가 안 됐어요. 내용을 직접 보내 주세요.'; });
-    } else {
-      msg.textContent = '복사가 안 됐어요. 내용을 직접 보내 주세요.';
-    }
+      navigator.clipboard.writeText(text).then(() => { msgEl.textContent = '복사됐어요! 인스타그램 @i.bang93 DM에 붙여 넣어 주세요.'; })
+        .catch(() => { msgEl.textContent = '복사가 안 됐어요. 내용을 직접 보내 주세요.'; });
+    } else { msgEl.textContent = '복사가 안 됐어요. 내용을 직접 보내 주세요.'; }
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
