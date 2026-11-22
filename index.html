@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>if(new URLSearchParams(location.search).get("view")==="portfolio")document.documentElement.classList.add("portfolio-mode");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>김민철 강사 | 나를 알면 길이 보인다</title>
-<meta name="description" content="청년·청소년의 자기이해에서 출발하는 진로 교육, 김민철 강사 홈페이지">
+<title>김민철 강사 | 진로·취업·퍼스널컬러·첫 직장생활</title>
+<meta name="description" content="청년·청소년의 첫걸음을 함께하는 김민철 강사. 진로, 취업, 퍼스널컬러, 첫 직장생활 강의.">
+<script>if(new URLSearchParams(location.search).get("view")==="portfolio")document.documentElement.classList.add("portfolio-mode");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1f2a37;
-    --soft:#5b6675;
-    --bg:#fffaf3;
-    --card:#ffffff;
-    --coral:#ff7a59;
-    --mint:#2bb3a3;
-    --sun:#ffc145;
-    --lilac:#8e7dff;
-    --line:#efe6d8;
-    --radius:20px;
+    --ink:#1f2a37; --soft:#5b6675; --bg:#fffaf3; --card:#fff;
+    --coral:#ff7a59; --mint:#2bb3a3; --sun:#ffc145; --lilac:#8e7dff;
+    --navy:#233744; --line:#efe6d8; --radius:20px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -28,11 +21,11 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
   /* 상단 메뉴 */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,250,243,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,250,243,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
   .logo{font-weight:900;font-size:1.15rem;letter-spacing:-.5px}
   .logo span{color:var(--coral)}
-  .menu{display:flex;gap:26px;font-weight:500;font-size:.95rem}
+  .menu{display:flex;gap:24px;font-weight:500;font-size:.95rem}
   .menu a:hover{color:var(--coral)}
   .burger{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--ink)}
 
@@ -41,19 +34,19 @@
   .tag{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--soft);margin-bottom:18px}
   .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.3;font-weight:900;letter-spacing:-1px}
   .hero h1 em{font-style:normal;background:linear-gradient(transparent 60%,#ffd9cc 60%)}
-  .hero p{margin-top:18px;color:var(--soft);font-size:1.05rem;max-width:520px}
+  .hero p{margin-top:18px;color:var(--soft);font-size:1.05rem;max-width:560px}
   .btns{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-block;padding:14px 24px;border-radius:14px;font-weight:700;transition:transform .2s}
+  .btn{display:inline-block;padding:14px 22px;border-radius:14px;font-weight:700;transition:transform .2s}
   .btn:hover{transform:translateY(-2px)}
   .btn.main{background:var(--ink);color:#fff}
   .btn.sub{background:#fff;border:1.5px solid var(--ink)}
-
+  .btn.accent{background:var(--sun);color:var(--ink)}
   .palette{position:relative;aspect-ratio:1/1;max-width:340px;margin:0 auto;width:100%}
   .dot{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;text-align:center;font-size:.95rem;box-shadow:0 12px 30px rgba(0,0,0,.08);animation:float 6s ease-in-out infinite}
-  .d1{width:52%;height:52%;background:var(--coral);top:0;left:4%}
+  .d1{width:50%;height:50%;background:var(--coral);top:0;left:4%}
   .d2{width:44%;height:44%;background:var(--mint);top:22%;right:0;animation-delay:1s}
-  .d3{width:40%;height:40%;background:var(--sun);bottom:2%;left:14%;color:var(--ink);animation-delay:2s}
-  .d4{width:28%;height:28%;background:var(--lilac);bottom:10%;right:10%;animation-delay:3s}
+  .d3{width:40%;height:40%;background:var(--sun);bottom:2%;left:12%;color:var(--ink);animation-delay:2s}
+  .d4{width:32%;height:32%;background:var(--lilac);bottom:8%;right:8%;animation-delay:3s;font-size:.85rem}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
   section{padding:70px 0}
@@ -62,42 +55,64 @@
   .label{color:var(--coral);font-weight:700;font-size:.85rem;letter-spacing:2px;margin-bottom:6px}
 
   /* 소개 */
-  .intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:center;margin-top:30px}
+  .intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;margin-top:30px}
   .photo{border-radius:var(--radius);aspect-ratio:4/5;overflow:hidden;background:#dbe9f7;box-shadow:12px 12px 0 var(--sun)}
   .photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
   .quote{font-size:1.25rem;font-weight:700;line-height:1.6}
-  .quote .closing-quote{color:var(--coral);font-size:2.4rem;line-height:0;vertical-align:-14px;margin-left:4px}
   .quote::before{content:"“";color:var(--coral);font-size:2.4rem;line-height:0;vertical-align:-14px;margin-right:4px}
+  .quote .closing-quote{color:var(--coral);font-size:2.4rem;line-height:0;vertical-align:-14px;margin-left:4px}
+  .story{color:var(--soft);margin-top:16px}
+  .voices{margin-top:16px;display:grid;gap:8px}
+  .voices span{display:inline-block;background:#fff;border-left:4px solid var(--coral);padding:8px 14px;border-radius:0 10px 10px 0;font-size:.95rem}
+  .voices small{color:var(--soft);font-size:.8rem}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
   .chip{background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:12px;font-size:.92rem}
 
-  /* 강의 분야 */
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
-  .card{background:var(--card);border-radius:var(--radius);padding:28px 24px;border:1px solid var(--line);transition:box-shadow .25s,transform .25s}
+  /* 강의 */
+  .fields{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px}
+  .field{border-radius:14px;padding:14px 16px;font-weight:700;font-size:.95rem;display:flex;justify-content:space-between;align-items:center}
+  .field small{font-weight:500;color:var(--soft)}
+  .f1{background:#dcf4f1}.f2{background:#ffe7df}.f3{background:#fff1cf}.f4{background:#ece9ff}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+  .card{background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid var(--line);transition:box-shadow .25s,transform .25s;display:flex;flex-direction:column}
   .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(31,42,55,.08)}
-  .icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px}
-  .card h3{font-size:1.15rem;margin-bottom:8px}
-  .card p{color:var(--soft);font-size:.95rem}
-  .card ul{margin-top:12px;padding-left:18px;color:var(--soft);font-size:.9rem}
-
-  /* 강의 흐름 */
-  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px;counter-reset:step}
-  .step{background:#fff;border-radius:var(--radius);padding:24px 20px;border-top:5px solid var(--mint);position:relative}
-  .step:nth-child(2){border-color:var(--sun)}
-  .step:nth-child(3){border-color:var(--coral)}
-  .step:nth-child(4){border-color:var(--lilac)}
-  .step::before{counter-increment:step;content:"STEP " counter(step);font-size:.78rem;font-weight:700;color:var(--soft);letter-spacing:1px}
-  .step h4{margin:6px 0;font-size:1.05rem}
-  .step p{font-size:.9rem;color:var(--soft)}
+  .card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .num{font-weight:900;font-size:.85rem;color:#fff;border-radius:8px;padding:2px 8px}
+  .t1 .num{background:var(--mint)}.t2 .num{background:var(--coral)}.t3 .num{background:#e0a21c}.t4 .num{background:var(--lilac)}
+  .cat{font-size:.8rem;color:var(--soft);font-weight:700}
+  .card h3{font-size:1.1rem;line-height:1.45;margin-bottom:6px}
+  .card p{color:var(--soft);font-size:.93rem}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .meta span{font-size:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px 9px}
+  .card details{margin-top:12px;font-size:.9rem}
+  .card summary{cursor:pointer;font-weight:700;color:var(--ink)}
+  .card ol{margin:8px 0 0 18px;color:var(--soft)}
+  .card ol li+li{margin-top:2px}
+  .note{font-size:.8rem;color:var(--soft);margin-top:6px}
 
   /* 경험 */
-  .exp{margin-top:30px;display:grid;gap:14px}
-  .exp-item{display:flex;gap:18px;background:#fff;border-radius:16px;padding:20px 22px;border:1px solid var(--line);align-items:flex-start}
-  .badge{flex-shrink:0;background:var(--ink);color:#fff;border-radius:10px;padding:4px 10px;font-size:.78rem;font-weight:700;margin-top:3px}
-  .exp-item h4{font-size:1.02rem}
-  .exp-item p{color:var(--soft);font-size:.92rem}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  .stat{background:var(--navy);color:#fff;border-radius:18px;padding:22px}
+  .stat b{display:block;font-size:1.7rem;font-weight:900;color:var(--sun)}
+  .stat span{font-size:.9rem;color:#d3dde1}
+  .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .box h3{font-size:1.05rem;margin-bottom:12px}
+  .timeline{list-style:none}
+  .timeline li{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:.92rem}
+  .timeline li:first-child{border-top:0}
+  .timeline em{font-style:normal;color:var(--soft);font-size:.85rem}
+  .places{display:grid;gap:12px}
+  .place b{display:inline-block;font-size:.82rem;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:2px 9px;margin-bottom:4px}
+  .place p{font-size:.88rem;color:var(--soft)}
+  .hl{list-style:none;display:grid;gap:8px}
+  .hl li{font-size:.92rem;padding-left:18px;position:relative}
+  .hl li::before{content:"";position:absolute;left:0;top:.65em;width:8px;height:8px;border-radius:50%;background:var(--coral)}
+  .hl small{color:var(--soft)}
+  .certs{display:flex;flex-wrap:wrap;gap:8px}
+  .certs span{font-size:.85rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:5px 11px}
 
-  /* 후기 슬라이더 */
+  /* 약속 */
   .voice{background:var(--ink);color:#fff;border-radius:28px;padding:50px 40px;text-align:center}
   .voice .label{color:var(--sun)}
   .voice-text{font-size:clamp(1.1rem,2.6vw,1.45rem);font-weight:700;min-height:90px;margin-top:14px;transition:opacity .4s}
@@ -106,54 +121,106 @@
   .dots button{width:10px;height:10px;border-radius:50%;border:0;background:#56606d;cursor:pointer}
   .dots button.on{background:var(--sun);width:26px;border-radius:6px}
 
+  /* 진행 절차 · FAQ */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px;counter-reset:step}
+  .step{background:#fff;border-radius:var(--radius);padding:20px 18px;border-top:5px solid var(--mint)}
+  .step:nth-child(2){border-color:var(--sun)}.step:nth-child(3){border-color:var(--coral)}.step:nth-child(4){border-color:var(--lilac)}.step:nth-child(5){border-color:var(--navy)}
+  .step::before{counter-increment:step;content:"STEP " counter(step);font-size:.75rem;font-weight:700;color:var(--soft);letter-spacing:1px}
+  .step h4{margin:4px 0;font-size:1rem}
+  .step p{font-size:.86rem;color:var(--soft)}
+  .faq{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+  .faq summary{cursor:pointer;font-weight:700;font-size:.95rem}
+  .faq p{margin-top:8px;color:var(--soft);font-size:.9rem}
+
   /* 문의 */
-  .contact{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}
-  .links{display:grid;gap:12px}
-  .link-box{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;font-weight:700;transition:border-color .2s}
-  .link-box:hover{border-color:var(--coral)}
-  .link-box small{display:block;font-weight:400;color:var(--soft)}
-  form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;gap:12px}
-  label{font-size:.88rem;font-weight:700}
-  input,select,textarea{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+  .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;margin-top:30px;align-items:stretch}
+  .links{display:flex;flex-direction:column;gap:12px;background:var(--navy);color:#fff;border-radius:24px;padding:30px;position:relative;overflow:hidden}
+  .links::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:var(--sun);opacity:.12;right:-65px;top:-75px;pointer-events:none}
+  .links-intro{position:relative;margin-bottom:6px}
+  .eyebrow{color:#ffc77a;font-size:.78rem;font-weight:700;letter-spacing:.13em}
+  .links-intro h3{font-size:1.35rem;line-height:1.45;margin-top:10px}
+  .links-intro p{font-size:.9rem;color:#cfdae0;margin-top:8px}
+  .portfolio-contact-btn{position:relative;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:16px;border-radius:14px;background:#ffc77a;color:var(--navy);font-weight:700;font-size:.95rem;transition:transform .2s,background .2s}
+  .portfolio-contact-btn:hover{transform:translateY(-2px);background:#ffdb9e}
+  .portfolio-contact-btn span{font-size:.78rem;font-weight:500}
+  .link-box{position:relative;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;padding:13px 15px;border-radius:16px;font-weight:700;transition:background .2s,border-color .2s,transform .2s}
+  .link-box:hover{background:rgba(255,255,255,.14);border-color:#ffc77a;transform:translateY(-2px)}
+  .link-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;color:var(--navy);background:#ffd8c9}
+  .link-box.k2 .link-icon{background:#d3f0df;color:#216a4b}
+  .link-box.k3 .link-icon{background:#fff1cf;color:#8a5a00}
+  .link-box.k4 .link-icon{background:#ece9ff;color:#4b3fb3}
+  .link-icon svg{width:22px;height:22px}
+  .link-title{flex:1}
+  .link-title small{display:block;font-weight:400;color:#d3dde1;margin-top:1px}
+  .link-arrow{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.12)}
+  form{background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;gap:14px;box-shadow:0 12px 35px rgba(31,42,55,.06)}
+  .form-heading h3{font-size:1.15rem}
+  .form-heading p{font-size:.86rem;color:var(--soft);margin-top:4px}
+  label{display:block;font-size:.88rem;font-weight:700;margin-bottom:5px}
+  input,select,textarea{width:100%;font:inherit;padding:12px 14px;border:1px solid #e8e1d6;border-radius:12px;background:var(--bg)}
   input:focus,select:focus,textarea:focus{outline:2px solid var(--mint);border-color:transparent}
   textarea{min-height:100px;resize:vertical}
-  form button{background:var(--coral);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;cursor:pointer}
+  form button{background:var(--coral);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s}
+  form button:hover{background:#ed684a}
+  .copy-note{font-size:.8rem;color:var(--soft)}
   .msg{font-size:.9rem;color:var(--mint);font-weight:700;min-height:1.2em}
 
   footer{text-align:center;padding:40px 20px;color:var(--soft);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
-
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
   .reveal.show{opacity:1;transform:none}
 
-
-  /* 문의 영역 */
-  #contact .contact{grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
-  #contact .links{display:flex;flex-direction:column;gap:12px;background:#233744;color:#fff;border-radius:24px;padding:30px;position:relative;overflow:hidden}
-  #contact .links:before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:#ffc145;opacity:.12;right:-65px;top:-75px;pointer-events:none}
-  #contact .links-intro{position:relative;margin-bottom:8px}
-  #contact .links-intro .eyebrow{color:#ffc77a;font-size:.78rem;font-weight:700;letter-spacing:.13em}
-  #contact .links-intro h3{font-size:1.35rem;line-height:1.45;margin-top:10px}
-  #contact .links-intro p{font-size:.9rem;color:#cfdae0;margin-top:8px}
-  #contact .link-box{position:relative;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;padding:15px;gap:12px;justify-content:flex-start}
-  #contact .link-box:hover{background:rgba(255,255,255,.14);border-color:#ffc77a;transform:translateY(-2px)}
-  #contact .link-icon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;flex:none;color:#233744;background:#ffd8c9}
-  #contact .link-box.blog .link-icon{background:#d3f0df;color:#216a4b}
-  #contact .link-icon svg{width:23px;height:23px}
-  #contact .link-title{flex:1}
-  #contact .link-box small{color:#d3dde1;margin-top:2px}
-  #contact .link-arrow{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.12);font-size:1.1rem}
-  #contact form{padding:30px;border-radius:24px;box-shadow:0 12px 35px rgba(31,42,55,.06);gap:14px}
-  #contact .form-heading{padding-bottom:3px}
-  #contact .form-heading h3{font-size:1.15rem}
-  #contact .form-heading p{font-size:.86rem;color:var(--soft);margin-top:4px}
-  #contact label{display:block;margin-bottom:5px}
-  #contact input,#contact select,#contact textarea{border-color:#e8e1d6}
-  #contact form button{transition:background .2s,transform .2s}
-  #contact form button:hover{background:#ed684a;transform:translateY(-1px)}
-  #contact .copy-note{font-size:.8rem;color:var(--soft);line-height:1.5}
-  @media(max-width:820px){#contact .contact{grid-template-columns:1fr}#contact .links,#contact form{padding:24px}}
+  /* 강의 제안서(포트폴리오) 보기 */
+  #portfolio-page{display:none}
+  html.portfolio-mode body>header,html.portfolio-mode body>main,html.portfolio-mode body>footer{display:none}
+  html.portfolio-mode #portfolio-page{display:block;background:#f1ede6;min-height:100vh;padding:28px 16px 70px;color:#263440}
+  .pf-toolbar{max-width:860px;margin:0 auto 16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .pf-toolbar a,.pf-toolbar button{font:inherit;font-size:.9rem;font-weight:700;padding:10px 16px;border-radius:12px;cursor:pointer}
+  .pf-toolbar a{background:#fff;border:1px solid #e5e0d8}
+  .pf-toolbar button{background:var(--navy);border:1px solid var(--navy);color:#fff}
+  .pf-tip{max-width:860px;margin:-6px auto 16px;font-size:.82rem;color:#6b7480}
+  .pf-sheet{max-width:860px;margin:0 auto 18px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 40px rgba(38,52,64,.08)}
+  .pf-in{padding:34px 42px}
+  .pf-cover{background:var(--navy);color:#fff;padding:40px 42px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .pf-cover .k{color:#ffc477;font-size:.78rem;letter-spacing:.16em;font-weight:700}
+  .pf-cover h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.3;margin:8px 0}
+  .pf-cover p{color:#dbe6e8;font-size:.95rem}
+  .pf-cover img{width:110px;height:138px;object-fit:cover;object-position:center 20%;border-radius:14px;flex:none}
+  .pf-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .pf-tags span{font-size:.78rem;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:3px 10px}
+  .pf-h{font-size:1.15rem;color:var(--navy);margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #f1e8da}
+  .pf-block+.pf-block{margin-top:22px}
+  .pf-block p,.pf-block li{font-size:.9rem;line-height:1.65}
+  .pf-quote{background:#fff8f1;border-left:4px solid var(--coral);padding:10px 14px;border-radius:0 10px 10px 0;margin:10px 0;font-size:.9rem}
+  .pf-list{display:grid;gap:0}
+  .pf-row{display:grid;grid-template-columns:34px 1.6fr 1fr 1fr;gap:10px;padding:9px 0;border-top:1px solid #f0e9de;font-size:.86rem;align-items:center}
+  .pf-row.head{font-weight:700;color:#6b7480;font-size:.78rem;border-top:0}
+  .pf-row b{color:var(--navy)}
+  .pf-n{width:28px;height:28px;border-radius:7px;background:var(--navy);color:#fff;font-size:.78rem;font-weight:700;display:grid;place-items:center}
+  .pf-lec{border:1px solid #efe6d8;border-radius:14px;padding:14px 16px;break-inside:avoid}
+  .pf-lec+.pf-lec{margin-top:10px}
+  .pf-lec h3{font-size:.98rem;color:var(--navy)}
+  .pf-lec .m{font-size:.78rem;color:#6b7480;margin:2px 0 6px}
+  .pf-lec ol{padding-left:18px;font-size:.85rem;color:#3e4b56}
+  .pf-lec .x{font-size:.8rem;color:#6b7480;margin-top:6px}
+  .pf-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pf-dl{display:grid;grid-template-columns:76px 1fr;gap:6px 12px;font-size:.88rem}
+  .pf-dl dt{color:#6b7480;font-weight:700}
+  .pf-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .pf-steps div{background:#f7f4ee;border-radius:10px;padding:10px;font-size:.8rem}
+  .pf-steps b{display:block;color:var(--navy);font-size:.86rem}
+  .pf-faq{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
+  .pf-faq div{font-size:.84rem}
+  .pf-faq b{display:block;color:var(--navy)}
+  .pf-contact{background:var(--navy);color:#fff;border-radius:14px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:6px 24px;font-size:.9rem}
+  .pf-contact b{color:#ffc477}
+  .pf-foot{font-size:.75rem;color:#8a93a1;text-align:right;margin-top:16px}
 
   /* 휴대폰 화면 */
+  @media (max-width:900px){
+    .flow{grid-template-columns:repeat(3,1fr)}
+    .fields{grid-template-columns:1fr 1fr}
+  }
   @media (max-width:820px){
     .menu{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
     .menu.open{display:flex}
@@ -163,45 +230,44 @@
     .hero p{margin-left:auto;margin-right:auto}
     .btns{justify-content:center}
     .palette{max-width:250px}
-    .intro,.contact{grid-template-columns:1fr}
+    .intro,.contact,.exp-grid,.faq{grid-template-columns:1fr}
     .photo{max-width:280px;margin:0 auto;width:100%}
     .cards{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr}
     .flow{grid-template-columns:1fr 1fr}
     section{padding:50px 0}
     .voice{padding:38px 22px}
+    .links,form{padding:24px}
+    .pf-in{padding:24px 20px}
+    .pf-cover{padding:26px 20px;align-items:flex-start}
+    .pf-cover img{width:76px;height:96px}
+    .pf-row{grid-template-columns:30px 1fr;row-gap:2px}
+    .pf-row.head{display:none}
+    .pf-row span:nth-child(3),.pf-row span:nth-child(4){grid-column:2;font-size:.8rem;color:#6b7480}
+    .pf-two,.pf-faq{grid-template-columns:1fr}
+    .pf-steps{grid-template-columns:1fr 1fr}
+    .pf-dl{grid-template-columns:1fr;gap:2px}
+    .pf-dl dd{margin-bottom:8px}
   }
   @media (max-width:420px){
-    .flow{grid-template-columns:1fr}
+    .flow,.fields{grid-template-columns:1fr}
   }
-
-  #portfolio-page{display:none}
-  html.portfolio-mode body>header,html.portfolio-mode body>main,html.portfolio-mode body>footer{display:none}
-  html.portfolio-mode #portfolio-page{display:block;background:#f6f3ed;min-height:100vh;padding:32px 18px 70px;color:#263440}
-  .portfolio-toolbar{max-width:920px;margin:0 auto 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .portfolio-toolbar a,.portfolio-toolbar button{font:inherit;font-size:.9rem;font-weight:700;padding:10px 16px;border-radius:12px;cursor:pointer}
-  .portfolio-toolbar a{background:white;border:1px solid #e5e0d8}
-  .portfolio-toolbar button{background:#223542;border:1px solid #223542;color:white}
-  .portfolio-sheet{max-width:920px;margin:auto;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 45px #26344017}
-  .portfolio-cover{background:#243946;color:white;padding:42px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .portfolio-cover .kicker{color:#ffc477;font-size:.78rem;letter-spacing:.16em;font-weight:700}
-  .portfolio-cover h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.3;margin:9px 0}
-  .portfolio-cover p{color:#dbe6e8;font-size:.96rem}
-  .portfolio-cover img{width:112px;height:140px;object-fit:cover;object-position:center 20%;border-radius:16px}
-  .portfolio-content{padding:34px 48px 42px}
-  .portfolio-content section{padding:0;margin:0 0 24px;break-inside:avoid}
-  .portfolio-content h2{font-size:1.15rem;margin-bottom:10px;color:#243946}
-  .portfolio-content p,.portfolio-content li{font-size:.9rem;line-height:1.65}
-  .portfolio-summary{color:#5b6675}
-  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .portfolio-card{background:#fff8f1;border:1px solid #f1e8da;border-radius:14px;padding:16px}
-  .portfolio-card:nth-child(2){background:#eef9f7}.portfolio-card:nth-child(3){background:#f3f1ff}
-  .portfolio-card h3{font-size:.98rem;margin-bottom:6px}.portfolio-card p{font-size:.85rem;color:#52616c}
-  .portfolio-content ul{padding-left:20px}.portfolio-content li+li{margin-top:4px}
-  .portfolio-contact{border-top:1px solid #eee4d7;padding-top:16px;color:#52616c;font-size:.85rem}
-  .portfolio-contact a{color:#243946;text-decoration:underline}
-  @media(max-width:650px){.portfolio-cover{padding:28px 22px;align-items:flex-start}.portfolio-cover img{width:75px;height:95px}.portfolio-content{padding:25px 22px}.portfolio-grid{grid-template-columns:1fr}.portfolio-toolbar{align-items:stretch}.portfolio-toolbar a,.portfolio-toolbar button{font-size:.82rem}}
-  @media print{@page{size:A4;margin:12mm}html.portfolio-mode body{background:white!important}html.portfolio-mode #portfolio-page{padding:0;background:white}.portfolio-toolbar{display:none}.portfolio-sheet{max-width:none;border-radius:0;box-shadow:none}.portfolio-cover{padding:20px 26px;print-color-adjust:exact;-webkit-print-color-adjust:exact}.portfolio-cover img{width:75px;height:95px}.portfolio-cover h1{font-size:23pt}.portfolio-content{padding:20px 26px}.portfolio-content section{margin-bottom:14px}.portfolio-card{print-color-adjust:exact;-webkit-print-color-adjust:exact}.portfolio-content p,.portfolio-content li{font-size:9.5pt;line-height:1.5}.portfolio-grid{grid-template-columns:repeat(3,1fr)}.portfolio-contact{font-size:9pt}}
-
+  @media print{
+    @page{size:A4;margin:11mm}
+    html.portfolio-mode #portfolio-page{padding:0;background:#fff}
+    .pf-toolbar,.pf-tip{display:none}
+    .pf-sheet{max-width:none;margin:0;border-radius:0;box-shadow:none;break-after:page}
+    .pf-sheet:last-child{break-after:auto}
+    .pf-cover,.pf-contact,.pf-n,.pf-steps div,.pf-quote{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+    .pf-cover{padding:22px 26px}
+    .pf-cover img{width:80px;height:100px}
+    .pf-in{padding:16px 6px}
+    .pf-block p,.pf-block li{font-size:9.5pt;line-height:1.55}
+    .pf-row{font-size:9pt;padding:6px 0}
+    .pf-lec{padding:9px 12px}
+    .pf-lec ol{font-size:8.6pt}
+    .pf-lec+.pf-lec{margin-top:7px}
+  }
 </style>
 </head>
 <body>
@@ -211,9 +277,9 @@
     <a href="#top" class="logo">김민철<span>.</span>강사</a>
     <nav class="menu" id="menu">
       <a href="#about">소개</a>
-      <a href="#lecture">강의 분야</a>
-      <a href="#flow">진행 방식</a>
-      <a href="#exp">경험</a>
+      <a href="#lecture">강의</a>
+      <a href="#exp">경력·출강</a>
+      <a href="#flow">진행 절차</a>
       <a href="#contact">문의</a>
     </nav>
     <button class="burger" id="burger" aria-label="메뉴 열기">☰</button>
@@ -223,20 +289,20 @@
 <main id="top">
   <div class="wrap hero">
     <div>
-      <span class="tag">청년·청소년 진로 교육 강사</span>
+      <span class="tag">진로 · 취업 · 퍼스널컬러 · 첫 직장생활 강사</span>
       <h1>나를 알면<br><em>나의 길</em>이 보입니다</h1>
-      <p>정답을 알려주는 강의보다, 스스로 답을 찾게 돕는 강의를 합니다. 나의 색, 나의 강점, 나의 비전을 발견하는 시간을 함께 만들어요.</p>
+      <p>정답을 알려주는 강의보다, 스스로 답을 찾게 돕는 강의를 합니다.<br>나의 색, 나의 강점, 나의 비전을 발견하는 시간을 함께 만들어요.</p>
       <div class="btns">
         <a href="#contact" class="btn main">강의 문의하기</a>
         <a href="#lecture" class="btn sub">강의 둘러보기</a>
-        <a href="?view=portfolio" class="btn sub">강의 포트폴리오 보기</a>
+        <a href="?view=portfolio" class="btn accent">강의 제안서 보기</a>
       </div>
     </div>
     <div class="palette" aria-hidden="true">
-      <div class="dot d1">나의 색</div>
-      <div class="dot d2">나의 강점</div>
-      <div class="dot d3">나의 비전</div>
-      <div class="dot d4">나의 길</div>
+      <div class="dot d1">진로</div>
+      <div class="dot d2">퍼스널컬러</div>
+      <div class="dot d3">취업</div>
+      <div class="dot d4">첫 직장생활</div>
     </div>
   </div>
 
@@ -248,12 +314,18 @@
         <div class="photo reveal"><img src="profile.jpg" alt="김민철 강사 프로필 사진" loading="lazy"></div>
         <div class="reveal">
           <p class="quote">사람들과 만나고, 함께 이야기하며 강의하는 시간이 즐겁습니다. 참여자들이 자신을 새롭게 발견하는 순간을 함께하고 싶습니다.<span class="closing-quote" aria-hidden="true">”</span></p>
-          <p class="sec-sub" style="margin-top:16px">청소년지도학을 전공하고 4년 넘게 강의·캠프·행사를 기획하며 현장에서 청년과 청소년을 만나 왔습니다. </p>
+          <p class="story">대학에서 청소년지도학을 전공하고, 학교밖청소년지원센터와 학교 현장에서 청소년들을 만났습니다. 그때 만난 청소년들이 청년이 되었는데, 고민은 그대로였습니다.</p>
+          <div class="voices">
+            <span>“제가 뭘 좋아하는지 모르겠어요.”</span>
+            <span>“자기소개서에 쓸 게 없어요.”</span>
+            <small>현장에서 만난 청소년·청년들의 말</small>
+          </div>
+          <p class="story">저도 많이 헤맸습니다. 그래서 먼저 한 발 내디딘 사람으로서, 아직 첫걸음을 떼지 못한 청년에게 “같이 가자”고 말하는 강의를 합니다.</p>
           <div class="chips">
-            <span class="chip">🎓 청소년지도학 전공</span>
-            <span class="chip">📜 강사양성과정 수료</span>
-            <span class="chip">🧭 자기이해 기반 진로 교육</span>
-            <span class="chip">🎨 퍼스널컬러 강의</span>
+            <span class="chip">🎓 명지대학교 청소년지도학·행정학 전공</span>
+            <span class="chip">📜 청소년지도사 2급</span>
+            <span class="chip">🎨 퍼스널컬러 컨설턴트 1급</span>
+            <span class="chip">🧭 청소년·청년 진로교육</span>
           </div>
         </div>
       </div>
@@ -264,52 +336,112 @@
     <div class="wrap">
       <div class="label reveal">LECTURE</div>
       <h2 class="sec-title reveal">이런 강의를 합니다</h2>
-      <p class="sec-sub reveal">대상과 목적에 맞춰 내용과 활동을 직접 설계합니다.</p>
+      <p class="sec-sub reveal">나를 알아 가는 강의, 나를 보여 주는 강의, 서류와 면접을 준비하는 강의, 첫 출근을 준비하는 강의까지. 대상과 기관 목적에 맞춰 예시와 활동을 조정합니다.</p>
+      <div class="fields reveal">
+        <div class="field f1">진로 <small>01</small></div>
+        <div class="field f2">퍼스널컬러 <small>02·03</small></div>
+        <div class="field f3">취업 준비 <small>04·05</small></div>
+        <div class="field f4">첫 직장생활 <small>06~08</small></div>
+      </div>
       <div class="cards">
-        <article class="card reveal">
-          <div class="icon" style="background:#ffe7df">🎨</div>
-          <h3>퍼스널컬러로 만나는 나</h3>
-          <p>나에게 어울리는 색을 찾으며 자연스럽게 ‘나다움’을 탐색하는 참여형 강의입니다.</p>
-          <ul><li>컬러 진단 체험</li></ul>
+        <article class="card t1 reveal">
+          <div class="card-top"><span class="num">01</span><span class="cat">진로 탐색 워크숍</span></div>
+          <h3>버크만 진단으로 알아보는 나의 흥미와 진로</h3>
+          <p>미리 받은 버크만 검사 결과를 보면서, 내가 어떤 일에 흥미를 느끼는지 찾고 내 말로 정리합니다.</p>
+          <div class="meta"><span>청년·대학생</span><span>90분</span><span>10명 내외</span><span>버크만 사전 검사</span></div>
+          <details><summary>진행 순서 보기</summary><ol><li>결과 읽기: 버크만 맵과 4가지 기호 보는 법</li><li>흥미 찾기: 3가지 질문으로 흥미를 경험·직업과 연결</li><li>함께 이야기하기: 그룹 맵에서 공통점과 차이점 나누기</li><li>나의 문장 쓰기: “나는 ~좋아하는 00입니다.”</li></ol></details>
         </article>
-        <article class="card reveal">
-          <div class="icon" style="background:#dcf4f1">💡</div>
-          <h3>강점·흥미 기반 진로 탐색</h3>
-          <p>검사와 활동으로 나의 강점과 흥미를 확인하고, 관심 직무와 연결해 봅니다.</p>
-          <ul><li>버크만 흥미 워크숍</li><li>강점 카드 활용 가능</li></ul>
+        <article class="card t2 reveal">
+          <div class="card-top"><span class="num">02</span><span class="cat">퍼스널컬러 특강</span></div>
+          <h3>나다운 이미지를 위한 퍼스널컬러 특강</h3>
+          <p>진단 키트로 내 웜·쿨 톤과 4계절 타입을 직접 확인하고, 옷·화장·면접 이미지에 쓰는 법까지 배웁니다.</p>
+          <div class="meta"><span>청소년·청년·교직원·학부모</span><span>2시간</span><span>인원 협의</span><span>진단 키트 강사 준비</span></div>
+          <details><summary>진행 순서 보기</summary><ol><li>퍼스널컬러 이해: 색이 주는 인상</li><li>웜·쿨 진단: 키트로 직접 진단</li><li>4계절 진단: 타입별 어울리는 색</li><li>이미지메이킹: 상황(TPO)별 연출법, 질의응답</li></ol></details>
         </article>
-        <article class="card reveal">
-          <div class="icon" style="background:#ece9ff">🚀</div>
-          <h3>비전 선언문 만들기</h3>
-          <p>발견한 나를 바탕으로 앞으로의 방향을 한 문장으로 정리하고 실천 계획을 세웁니다.</p>
-          <ul><li>나만의 비전 문장</li><li>작은 실천 목표 세우기</li></ul>
+        <article class="card t2 reveal">
+          <div class="card-top"><span class="num">03</span><span class="cat">현장 체험</span></div>
+          <h3>퍼스널컬러 체험 부스</h3>
+          <p>축제·박람회에서 방문자가 퍼스널컬러 진단을 직접 체험할 수 있는 부스입니다.</p>
+          <div class="meta"><span>행사·박람회 방문자</span><span>행사 일정 맞춤</span><span>동시 2~8명</span><span>부스 공간 1곳</span></div>
+          <details><summary>진행 순서 보기</summary><ol><li>안내: 체험 방법 설명</li><li>웜·쿨 확인: 진단 천을 대어 보며 톤 확인</li><li>결과 안내: 4계절 타입과 활용 팁 1:1 안내</li></ol></details>
+        </article>
+        <article class="card t3 reveal">
+          <div class="card-top"><span class="num">04</span><span class="cat">취업 서류 특강</span></div>
+          <h3>노트미 AI로 준비하는 이력서·자기소개서 특강</h3>
+          <p>취업 준비 AI 서비스 노트미로 내 경험을 꺼내 지원 직무에 맞는 이력서와 자기소개서를 완성합니다.</p>
+          <div class="meta"><span>취업 준비 청년·대학생</span><span>회차·인원 협의</span><span>노트북·휴대폰</span></div>
+          <details><summary>진행 순서 보기</summary><ol><li>경험 꺼내기: AI와 대화하며 경험 정리</li><li>이력서 다듬기: 맡은 일과 결과를 한 줄로</li><li>자기소개서 쓰기: STAR 순서로 초안 작성</li><li>첨삭과 점검: 내 말과 숫자로 고치기</li></ol><p class="note">참여 인원만큼 노트미 이용권이 필요합니다(별도 문의).</p></details>
+        </article>
+        <article class="card t3 reveal">
+          <div class="card-top"><span class="num">05</span><span class="cat">면접 특강</span></div>
+          <h3>노트미 AI 모의면접으로 준비하는 면접 특강</h3>
+          <p>면접관이 무엇을 보는지 알고, 노트미의 면접 스크립트와 AI 모의면접으로 실제처럼 연습합니다.</p>
+          <div class="meta"><span>청년·대학생·구직자</span><span>회차·인원 협의</span><span>카메라·마이크 기기</span></div>
+          <details><summary>진행 순서 보기</summary><ol><li>면접 이해: 면접 종류와 면접관이 보는 것</li><li>첫인상과 태도: 자세·시선·목소리 실습</li><li>답변 준비: 1분 자기소개, 지원 동기, 직무 질문</li><li>AI 모의면접: 연습 모드와 실전 모드</li></ol><p class="note">참여 인원만큼 노트미 이용권이 필요합니다(별도 문의).</p></details>
+        </article>
+        <article class="card t4 reveal">
+          <div class="card-top"><span class="num">06</span><span class="cat">첫 직장생활</span></div>
+          <h3>첫 출근 전에 알아 두는 직장 매너</h3>
+          <p>출근 첫날 인사와 호칭, 전화·메신저·이메일 예절, 회의와 회식 매너를 상황 카드로 연습합니다.</p>
+          <div class="meta"><span>입사 전후 청년</span><span>2시간</span><span>인원 협의</span><span>활동지 강사 준비</span></div>
+        </article>
+        <article class="card t4 reveal">
+          <div class="card-top"><span class="num">07</span><span class="cat">첫 직장생활</span></div>
+          <h3>신입이 알아 두면 좋은 회사 대화법</h3>
+          <p>지시를 메모하고 되묻는 법, 일이 막힐 때 먼저 알리는 법, 짧게 말하는 법을 짝 역할극으로 연습합니다.</p>
+          <div class="meta"><span>입사 전후 청년</span><span>2시간</span><span>인원 협의</span><span>활동지 강사 준비</span></div>
+        </article>
+        <article class="card t4 reveal">
+          <div class="card-top"><span class="num">08</span><span class="cat">첫 직장생활</span></div>
+          <h3>신입을 위한 문서 작성·보고와 업무 관리</h3>
+          <p>결론부터 쓰는 문서, 숫자와 표 정리, 보고와 업무 메일, 일의 순서 정하기를 실습합니다.</p>
+          <div class="meta"><span>입사 전후 청년</span><span>2시간</span><span>인원 협의</span><span>활동지 강사 준비</span></div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <section id="flow">
-    <div class="wrap">
-      <div class="label reveal">PROCESS</div>
-      <h2 class="sec-title reveal">강의는 이렇게 준비해요</h2>
-      <div class="flow">
-        <div class="step reveal"><h4>사전 상담</h4><p>기관의 목적, 참여자 특성, 인원과 시간을 먼저 듣습니다.</p></div>
-        <div class="step reveal"><h4>맞춤 설계</h4><p>대상에 맞게 활동과 자료를 직접 구성합니다.</p></div>
-        <div class="step reveal"><h4>참여형 강의</h4><p>듣기만 하지 않고, 직접 해 보며 스스로 발견합니다.</p></div>
-        <div class="step reveal"><h4>결과 공유</h4><p>필요에 따라 강의 결과를 정리해 기관과 공유할 수 있습니다.</p></div>
-      </div>
+      <p class="note reveal" style="margin-top:14px">06~08 강의는 각각 따로 신청할 수 있습니다. 모든 강의 비용은 협의로 정합니다.</p>
     </div>
   </section>
 
   <section id="exp">
     <div class="wrap">
       <div class="label reveal">EXPERIENCE</div>
-      <h2 class="sec-title reveal">현장에서 쌓은 경험</h2>
-      <div class="exp">
-        <div class="exp-item reveal"><span class="badge">강의</span><div><h4>제주 청소년 진로 탐색 특강</h4><p>청소년 100명 대상 4시간 단독 진행</p></div></div>
-        <div class="exp-item reveal"><span class="badge">운영</span><div><h4>청년강사 프로그램 운영</h4><p>강사 모집·선발·관리 등 프로그램 전반 운영</p></div></div>
-        <div class="exp-item reveal"><span class="badge">기획</span><div><h4>강의·캠프·행사 기획</h4><p>4년 이상 청년·청소년 대상 교육 프로그램 기획과 진행</p></div></div>
-        <div class="exp-item reveal"><span class="badge">교육</span><div><h4>강사양성과정 수료</h4><p>기업교육·청년 교육 분야로 강의 영역 확장 중</p></div></div>
+      <h2 class="sec-title reveal">현장에서 쌓은 경력</h2>
+      <div class="stats">
+        <div class="stat reveal"><b>50여 곳</b><span>진로·직업체험 출강 학교·기관</span></div>
+        <div class="stat reveal"><b>30여 곳</b><span>이미지메이킹·퍼스널컬러 출강 대학·교육청·기관</span></div>
+        <div class="stat reveal"><b>2020~</b><span>청소년 현장에서 시작한 교육 경력</span></div>
+      </div>
+      <div class="exp-grid">
+        <div class="box reveal">
+          <h3>경력</h3>
+          <ul class="timeline">
+            <li><em>2026.09 ~ 현재</em><span>프리랜서 강사</span></li>
+            <li><em>2024.03 ~ 2026.08</em><span>이미지호(주) 콘텐츠팀 전임</span></li>
+            <li><em>2020.01 ~ 2023.10</em><span>동작구학교밖청소년지원센터 팀원</span></li>
+          </ul>
+          <h3 style="margin-top:20px">주요 활동</h3>
+          <ul class="hl">
+            <li>퍼스널컬러 컨설턴트 자격증 강의 <small>건국대학교 대학원(교수 대상 1급), 안산대학교, 청음복지관(청각장애인 대상 6회기)</small></li>
+            <li>퍼스널컬러 컨설턴트 자격증 심사 <small>경복대학교, 신구대학교</small></li>
+            <li>교원 대상 이미지메이킹 연수·특강 <small>부산교육연수원, 용인시교육지원청, 나주교육지원청 등</small></li>
+            <li>취업 캠프·특강 <small>KTO 우수호텔아카데미, 경남간호고 취업캠프</small></li>
+          </ul>
+        </div>
+        <div class="box reveal">
+          <h3>주요 출강</h3>
+          <div class="places">
+            <div class="place"><b>진로·직업체험</b><p>일산고, 신길고, 진위고, 안성여고, 경복비즈니스고, 서문여중, 동덕여중, 선일여중, 창문여중, 숭문중, 상암중, 서초중, 삼육초, 방학초, 서울시립청소년음악센터, 마포·용산 학교밖청소년지원센터, 안산시청소년진로체험지원센터 외 50여 곳</p></div>
+            <div class="place"><b>취업·면접</b><p>KTO 우수호텔아카데미, JA KOREA 취업박람회, 경남간호고 취업캠프, 서울시가족센터, 동작취업지원센터, 서정대학교, 충북에듀테크 콘팩스, 서울고용노동본청·서울청년·광진구·강북구·양천구 취업박람회 외</p></div>
+            <div class="place"><b>이미지메이킹·퍼스널컬러</b><p>건국대학교 대학원, 서울여자대학교, 관동대학교, 경복대학교, 신구대학교, 안산대학교, 부산교육연수원, 용인시교육지원청, 나주교육지원청, 서울사대부설여중, 무학중, 화도중, 도봉초, 청음복지관, 평창관광문화재단 외 30여 곳</p></div>
+            <div class="place"><b>체험 부스</b><p>취업박람회, 지역 축제, 복지관, 에듀테크 행사</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="box reveal" style="margin-top:16px">
+        <h3>자격</h3>
+        <div class="certs">
+          <span>청소년지도사 2급</span><span>퍼스널컬러 컨설턴트 1급</span><span>창직진로지도사 1급</span><span>AI-POT 1급</span><span>청소년 권리교육 강사</span><span>청소년노동인권 전문강사</span><span>스테이션강점마스터</span>
+        </div>
       </div>
     </div>
   </section>
@@ -325,6 +457,28 @@
     </div>
   </section>
 
+  <section id="flow">
+    <div class="wrap">
+      <div class="label reveal">PROCESS</div>
+      <h2 class="sec-title reveal">강의는 이렇게 진행돼요</h2>
+      <div class="flow">
+        <div class="step reveal"><h4>문의</h4><p>전화나 이메일로 연락 주세요. 대상, 인원, 날짜, 장소를 여쭙니다.</p></div>
+        <div class="step reveal"><h4>강의 정하기</h4><p>기관 목적에 맞는 강의를 정하고, 시간과 비용을 안내드립니다.</p></div>
+        <div class="step reveal"><h4>사전 준비</h4><p>버크만 사전 검사처럼 필요한 준비를 미리 안내합니다.</p></div>
+        <div class="step reveal"><h4>강의 진행</h4><p>교안, 활동지, 진단 키트는 강사가 가져갑니다.</p></div>
+        <div class="step reveal"><h4>마무리</h4><p>질의응답으로 강의를 마무리합니다.</p></div>
+      </div>
+      <div class="faq">
+        <details class="reveal"><summary>Q. 몇 명까지 참여할 수 있나요?</summary><p>버크만 강의는 결과를 한 사람씩 봐야 해서 10명 내외가 좋습니다. 체험 부스는 동시에 2~8명까지 진행합니다. 나머지 강의는 공간과 대상에 맞춰 협의합니다.</p></details>
+        <details class="reveal"><summary>Q. 대상에 맞춰 내용을 바꿀 수 있나요?</summary><p>네. 중·고등학생, 대학생, 구직 청년 등 대상과 기관 목적에 맞춰 예시와 활동을 조정합니다.</p></details>
+        <details class="reveal"><summary>Q. 인터넷이 안 되는 곳에서도 되나요?</summary><p>버크만 강의와 퍼스널컬러 강의는 종이 활동지와 진단 키트로 진행할 수 있습니다. 노트미 강의(04·05)는 인터넷이 필요합니다.</p></details>
+        <details class="reveal"><summary>Q. 기관에서 준비할 것이 있나요?</summary><p>강의는 빔프로젝터·스크린과 마이크를 준비해 주세요. 체험 부스는 책상 1개, 의자, 전원 콘센트가 필요합니다.</p></details>
+        <details class="reveal"><summary>Q. 일정이 바뀌면 어떻게 하나요?</summary><p>미리 연락 주시면 가능한 날짜로 다시 정합니다. 버크만 강의는 사전 검사 기간이 필요하니 여유 있게 알려 주세요.</p></details>
+        <details class="reveal"><summary>Q. 비용은 얼마인가요?</summary><p>모든 강의 비용은 협의로 정합니다. 퍼스널컬러 특강은 재료비가 따로 있고, 체험 부스는 운영비에 재료비가 포함되어 있습니다. 연락 주시면 견적을 보내 드립니다.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="wrap">
       <div class="label reveal">CONTACT</div>
@@ -332,22 +486,29 @@
       <p class="sec-sub reveal">편한 방법으로 연락 주세요.</p>
       <div class="contact">
         <div class="links reveal">
-          <a class="portfolio-contact-btn" href="?view=portfolio">강의 포트폴리오 보기 <span>인쇄 · PDF 저장 가능 →</span></a>
-          <div class="links-intro"><span class="eyebrow">LET’S CONNECT</span><h3>함께 만들 강의를<br>이야기해요.</h3><p>편한 채널로 강의 문의를 보내 주세요.</p></div>
-          <a class="link-box" href="https://www.instagram.com/i.bang93" target="_blank" rel="noopener"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span class="link-title">인스타그램<small>@i.bang93 · DM 보내기</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
-          <a class="link-box blog" href="https://blog.naver.com/kmc1500" target="_blank" rel="noopener"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h10M7 17h6"/></svg></span><span class="link-title">네이버 블로그<small>강의 후기 둘러보기</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
+          <div class="links-intro"><span class="eyebrow">LET’S CONNECT</span><h3>함께 만들 강의를<br>이야기해요.</h3><p>대상, 인원, 날짜, 장소를 알려 주시면 맞는 강의를 안내드립니다.</p></div>
+          <a class="portfolio-contact-btn" href="?view=portfolio">강의 제안서 보기 <span>인쇄 · PDF 저장 가능 →</span></a>
+          <a class="link-box" href="tel:01028618616"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span class="link-title">전화<small>010-2861-8616</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
+          <a class="link-box k3" href="mailto:kmc1050@gmail.com"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="link-title">이메일<small>kmc1050@gmail.com</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
+          <a class="link-box k4" href="https://www.instagram.com/i.bang93" target="_blank" rel="noopener"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><span class="link-title">인스타그램<small>@i.bang93</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
+          <a class="link-box k2" href="https://blog.naver.com/kmc1500" target="_blank" rel="noopener"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h10M7 17h6"/></svg></span><span class="link-title">네이버 블로그<small>강의 후기 둘러보기</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
         </div>
         <form class="reveal" id="form">
-          <div class="form-heading"><h3>문의 내용 미리 작성하기</h3><p>아래 내용을 작성해 복사한 뒤, 편한 채널로 보내 주세요.</p></div>
+          <div class="form-heading"><h3>문의 내용 미리 작성하기</h3><p>아래 내용을 작성해 복사한 뒤, 문자·이메일·DM으로 보내 주세요.</p></div>
           <div><label for="org">기관명</label><input id="org" placeholder="예) ○○청년센터" required></div>
           <div><label for="type">희망 강의</label>
             <select id="type">
-              <option>퍼스널컬러로 만나는 나</option>
-              <option>강점·흥미 기반 진로 탐색</option>
-              <option>비전 선언문 만들기</option>
+              <option>01 버크만 진단으로 알아보는 나의 흥미와 진로</option>
+              <option>02 나다운 이미지를 위한 퍼스널컬러 특강</option>
+              <option>03 퍼스널컬러 체험 부스</option>
+              <option>04 노트미 AI 이력서·자기소개서 특강</option>
+              <option>05 노트미 AI 모의면접 면접 특강</option>
+              <option>06 첫 출근 전에 알아 두는 직장 매너</option>
+              <option>07 신입이 알아 두면 좋은 회사 대화법</option>
+              <option>08 신입을 위한 문서 작성·보고와 업무 관리</option>
               <option>기타 / 상담 후 결정</option>
             </select></div>
-          <div><label for="memo">문의 내용</label><textarea id="memo" placeholder="대상, 인원, 희망 날짜를 적어 주세요"></textarea></div>
+          <div><label for="memo">문의 내용</label><textarea id="memo" placeholder="대상, 인원, 희망 날짜, 장소를 적어 주세요"></textarea></div>
           <button type="submit">문의 내용 복사하기</button>
           <p class="copy-note">복사 버튼은 메시지를 자동으로 전송하지 않습니다.</p>
           <p class="msg" id="msg" role="status"></p>
@@ -357,41 +518,122 @@
   </section>
 </main>
 
-<footer>© <span id="year"></span> 김민철 강사. 나를 알면 길이 보입니다.</footer>
-
+<footer>© <span id="year"></span> 김민철 강사. 같이 가요, 첫걸음.</footer>
 
 <div id="portfolio-page">
-  <div class="portfolio-toolbar"><a href="/">← 홈페이지로 돌아가기</a><button type="button" onclick="window.print()">인쇄 / PDF로 저장</button></div>
-  <article class="portfolio-sheet">
-    <div class="portfolio-cover"><div><span class="kicker">LECTURE PORTFOLIO</span><h1>나를 알아가는<br>첫걸음</h1><p>청년·청소년 진로 교육 | 김민철 강사</p></div><img src="profile.jpg" alt="김민철 강사 프로필 사진"></div>
-    <div class="portfolio-content">
-      <section><h2>강사 소개</h2><p class="portfolio-summary">사람들과 만나고, 함께 이야기하며 강의하는 시간이 즐겁습니다. 참여자들이 자신을 새롭게 발견하는 순간을 함께하고 싶습니다. 청소년지도학을 전공하고 강의·캠프·행사를 기획하며 청년과 청소년을 만나 왔습니다.</p></section>
-      <section><h2>강의 주제</h2><div class="portfolio-grid">
-        <div class="portfolio-card"><h3>퍼스널컬러</h3><p>나에게 어울리는 색을 찾는 컬러 진단 체험을 통해 나다움을 탐색합니다.</p></div>
-        <div class="portfolio-card"><h3>강점·흥미 진로 탐색</h3><p>버크만 흥미 워크숍 등으로 자신을 이해하고 관심 분야를 탐색합니다. 강점 카드 활용도 가능합니다.</p></div>
-        <div class="portfolio-card"><h3>비전 선언문 만들기</h3><p>발견한 나를 바탕으로 앞으로의 방향을 문장으로 정리하고 실천 목표를 생각합니다.</p></div>
-      </div></section>
-      <section><h2>경험 및 활동</h2><ul><li>제주 청소년 100명 대상 진로 탐색 강의 4시간 단독 진행</li><li>청년강사 프로그램 모집·선발·관리 등 운영</li><li>청년·청소년 대상 강의·캠프·행사 기획과 진행</li><li>강사양성과정 수료</li></ul></section>
-      <section><h2>진행 안내</h2><p>대상과 목적에 맞춰 강의 내용과 활동을 조율합니다. 필요에 따라 강의 결과를 정리해 기관과 공유할 수 있습니다.</p></section>
-      <div class="portfolio-contact"><strong>강의 문의</strong> &nbsp; <a href="https://www.instagram.com/i.bang93">인스타그램 @i.bang93</a> &nbsp; | &nbsp; <a href="https://blog.naver.com/kmc1500">네이버 블로그</a><br>대상, 인원, 희망 일정과 함께 문의해 주세요.</div>
+  <div class="pf-toolbar"><a href="./">← 홈페이지로 돌아가기</a><button type="button" onclick="window.print()">인쇄 / PDF로 저장</button></div>
+  <p class="pf-tip">PDF로 받으려면 버튼을 누른 뒤 인쇄 창의 대상(프린터)에서 ‘PDF로 저장’을 선택하세요.</p>
+
+  <article class="pf-sheet">
+    <div class="pf-cover">
+      <div>
+        <span class="k">청년·청소년 강의 제안서</span>
+        <h1>같이 가요, 첫걸음</h1>
+        <p>강사 김민철 · 진로·취업·퍼스널컬러 강사</p>
+        <div class="pf-tags"><span>진로</span><span>퍼스널컬러</span><span>취업</span><span>첫 직장생활</span></div>
+      </div>
+      <img src="profile.jpg" alt="김민철 강사 프로필 사진">
+    </div>
+    <div class="pf-in">
+      <div class="pf-block">
+        <h2 class="pf-h">안녕하세요, 김민철 강사입니다</h2>
+        <p>대학에서 청소년지도학을 전공하고, 학교밖청소년지원센터와 학교 현장에서 청소년들을 만났습니다. 그때 만난 청소년들이 이제 청년이 되었는데, 고민은 그대로였습니다.</p>
+        <div class="pf-quote">“제가 뭘 좋아하는지 모르겠어요.” &nbsp; “자기소개서에 쓸 게 없어요.”</div>
+        <p>저도 많이 헤맸습니다. 그래서 먼저 한 발 내디딘 사람으로서, 아직 첫걸음을 떼지 못한 청년에게 “같이 가자”고 말해 보려 합니다. 나를 알아 가는 강의, 나를 보여 주는 강의, 서류와 면접을 준비하는 강의로 길을 찾는 청소년·청년과 함께하겠습니다.</p>
+      </div>
+      <div class="pf-block">
+        <h2 class="pf-h">강의 목록</h2>
+        <div class="pf-list">
+          <div class="pf-row head"><span></span><span>강의</span><span>대상</span><span>시간·인원</span></div>
+          <div class="pf-row"><span class="pf-n">01</span><b>버크만 진단으로 알아보는 나의 흥미와 진로</b><span>청년·대학생</span><span>90분 · 10명 내외</span></div>
+          <div class="pf-row"><span class="pf-n">02</span><b>나다운 이미지를 위한 퍼스널컬러 특강</b><span>청소년·청년·교직원·학부모</span><span>2시간 · 인원 협의</span></div>
+          <div class="pf-row"><span class="pf-n">03</span><b>퍼스널컬러 체험 부스</b><span>행사·박람회 방문자</span><span>행사 일정 · 동시 2~8명</span></div>
+          <div class="pf-row"><span class="pf-n">04</span><b>노트미 AI로 준비하는 이력서·자기소개서 특강</b><span>취업 준비 청년·대학생</span><span>회차·인원 협의</span></div>
+          <div class="pf-row"><span class="pf-n">05</span><b>노트미 AI 모의면접으로 준비하는 면접 특강</b><span>면접 준비 청년·구직자</span><span>회차·인원 협의</span></div>
+          <div class="pf-row"><span class="pf-n">06</span><b>첫 출근 전에 알아 두는 직장 매너</b><span>입사 전후 청년</span><span>2시간 · 인원 협의</span></div>
+          <div class="pf-row"><span class="pf-n">07</span><b>신입이 알아 두면 좋은 회사 대화법</b><span>입사 전후 청년</span><span>2시간 · 인원 협의</span></div>
+          <div class="pf-row"><span class="pf-n">08</span><b>신입을 위한 문서 작성·보고와 업무 관리</b><span>입사 전후 청년</span><span>2시간 · 인원 협의</span></div>
+        </div>
+      </div>
+      <p class="pf-foot">강사 김민철 · 강의 제안서 1</p>
+    </div>
+  </article>
+
+  <article class="pf-sheet">
+    <div class="pf-in">
+      <h2 class="pf-h">강의 소개</h2>
+      <div class="pf-two">
+        <div>
+          <div class="pf-lec"><h3>01 버크만 진단으로 알아보는 나의 흥미와 진로</h3><p class="m">진로 탐색 워크숍 · 90분 · 10명 내외</p><ol><li>결과 읽기: 버크만 맵과 4가지 기호 보는 법</li><li>흥미 찾기: 3가지 질문으로 흥미를 경험·직업과 연결</li><li>함께 이야기하기: 그룹 맵에서 공통점과 차이점</li><li>나의 문장 쓰기: “나는 ~좋아하는 00입니다.”</li></ol><p class="x">준비: 참여자 버크만 사전 검사 · 웹 또는 종이 활동지</p></div>
+          <div class="pf-lec"><h3>02 나다운 이미지를 위한 퍼스널컬러 특강</h3><p class="m">퍼스널컬러 특강 · 2시간 · 인원 협의</p><ol><li>퍼스널컬러 이해: 색이 주는 인상</li><li>웜·쿨 진단: 진단 키트로 직접 확인</li><li>4계절 진단: 타입별 어울리는 색</li><li>이미지메이킹: 상황(TPO)별 연출법, 질의응답</li></ol><p class="x">준비: 진단 키트 강사 준비 · 재료비 별도</p></div>
+          <div class="pf-lec"><h3>03 퍼스널컬러 체험 부스</h3><p class="m">현장 체험 · 행사 일정 맞춤 · 동시 2~8명</p><ol><li>안내: 체험 방법 설명</li><li>웜·쿨 확인: 진단 천을 대어 보며 톤 확인</li><li>결과 안내: 4계절 타입과 활용 팁 1:1 안내</li></ol><p class="x">준비: 부스 공간 1곳 · 운영비에 재료비 포함</p></div>
+          <div class="pf-lec"><h3>04 노트미 AI로 준비하는 이력서·자기소개서 특강</h3><p class="m">취업 서류 특강 · 회차·인원 협의</p><ol><li>경험 꺼내기: AI와 대화하며 경험·강점 정리</li><li>이력서 다듬기: 맡은 일과 결과를 한 줄로</li><li>자기소개서 쓰기: STAR 순서로 초안 작성</li><li>첨삭과 점검: 내 말과 숫자로 고치기(강사 첨삭)</li></ol><p class="x">준비: 노트북·휴대폰, 인터넷 · 인원만큼 이용권 필요(별도 문의)</p></div>
+        </div>
+        <div>
+          <div class="pf-lec"><h3>05 노트미 AI 모의면접으로 준비하는 면접 특강</h3><p class="m">면접 특강 · 회차·인원 협의</p><ol><li>면접 이해: 면접 종류와 면접관이 보는 것</li><li>첫인상과 태도: 입장부터 퇴장까지, 자세 실습</li><li>답변 준비: 1분 자기소개, 지원 동기, 직무 질문</li><li>AI 모의면접: 연습 모드와 실전 모드</li></ol><p class="x">준비: 카메라·마이크 기기, 인터넷 · 인원만큼 이용권 필요(별도 문의)</p></div>
+          <div class="pf-lec"><h3>06 첫 출근 전에 알아 두는 직장 매너</h3><p class="m">직장 기본기 실습 · 2시간 · 인원 협의</p><ol><li>첫인상과 인사: 첫날 인사, 자기소개, 호칭</li><li>연락 예절: 전화·메신저·이메일</li><li>회의와 회식: 메모하는 법, 기본 매너</li><li>상황 연습: 상황 카드 짝 역할극</li></ol></div>
+          <div class="pf-lec"><h3>07 신입이 알아 두면 좋은 회사 대화법</h3><p class="m">직장 기본기 실습 · 2시간 · 인원 협의</p><ol><li>지시 알아듣기: 메모하고 바로 되묻기</li><li>먼저 알리기: 늦어지거나 막힐 때 미리 말하기</li><li>짧게 말하기: 한두 문장으로 전하기</li><li>상황 연습: 실수했을 때, 도움을 청할 때</li></ol></div>
+          <div class="pf-lec"><h3>08 신입을 위한 문서 작성·보고와 업무 관리</h3><p class="m">직장 기본기 실습 · 2시간 · 인원 협의</p><ol><li>문서 쓰는 원칙: 개조식, 결론부터</li><li>숫자와 표: 날짜·금액 쓰기, 표 정리</li><li>보고와 메일: 중간 보고, 업무 메일</li><li>업무 관리: 일을 나누고 순서 정하기</li></ol><p class="x">06~08 공통: 취업을 앞두었거나 입사 1년 이내 청년 · 활동지 강사 준비 · 강의별 신청 가능</p></div>
+        </div>
+      </div>
+      <p class="pf-foot">강사 김민철 · 강의 제안서 2</p>
+    </div>
+  </article>
+
+  <article class="pf-sheet">
+    <div class="pf-in">
+      <div class="pf-block">
+        <h2 class="pf-h">강사 소개</h2>
+        <dl class="pf-dl">
+          <dt>학력</dt><dd>명지대학교 청소년지도학과·행정학과</dd>
+          <dt>자격</dt><dd>청소년지도사 2급, 퍼스널컬러 컨설턴트 1급, 창직진로지도사 1급, AI-POT 1급, 청소년 권리교육 강사, 청소년노동인권 전문강사</dd>
+          <dt>경력</dt><dd>2026.09 ~ 현재 프리랜서 강사<br>2024.03 ~ 2026.08 이미지호(주) 콘텐츠팀 전임<br>2020.01 ~ 2023.10 동작구학교밖청소년지원센터 팀원</dd>
+          <dt>진로·직업체험</dt><dd>일산고, 신길고, 진위고, 안성여고, 경복비즈니스고, 서문여중, 동덕여중, 선일여중, 창문여중, 숭문중, 상암중, 서초중, 삼육초, 방학초, 서울시립청소년음악센터, 마포·용산 학교밖청소년지원센터, 안산시청소년진로체험지원센터 외 50여 곳</dd>
+          <dt>취업·면접</dt><dd>KTO 우수호텔아카데미, JA KOREA 취업박람회, 경남간호고 취업캠프, 서울시가족센터, 동작취업지원센터, 서정대학교, 충북에듀테크 콘팩스, 서울고용노동본청·서울청년·광진구·강북구·양천구 취업박람회 외</dd>
+          <dt>이미지메이킹·퍼스널컬러</dt><dd>건국대학교 대학원, 서울여자대학교, 관동대학교, 경복대학교, 신구대학교, 안산대학교, 부산교육연수원, 용인시교육지원청, 나주교육지원청, 서울사대부설여중, 무학중, 화도중, 도봉초, 청음복지관, 평창관광문화재단 외 30여 곳</dd>
+          <dt>체험 부스</dt><dd>취업박람회, 지역 축제, 복지관, 에듀테크 행사</dd>
+        </dl>
+      </div>
+      <div class="pf-block">
+        <h2 class="pf-h">진행 절차</h2>
+        <div class="pf-steps">
+          <div><b>1 문의</b>대상, 인원, 날짜, 장소를 여쭙니다</div>
+          <div><b>2 강의 정하기</b>목적에 맞는 강의와 시간·비용 안내</div>
+          <div><b>3 사전 준비</b>버크만 사전 검사 등 미리 안내</div>
+          <div><b>4 강의 진행</b>교안·활동지·진단 키트는 강사 준비</div>
+          <div><b>5 마무리</b>질의응답으로 마무리</div>
+        </div>
+      </div>
+      <div class="pf-block">
+        <h2 class="pf-h">자주 묻는 질문</h2>
+        <div class="pf-faq">
+          <div><b>Q. 몇 명까지 참여할 수 있나요?</b>버크만 강의는 10명 내외, 체험 부스는 동시에 2~8명입니다. 나머지는 공간과 대상에 맞춰 협의합니다.</div>
+          <div><b>Q. 대상에 맞춰 내용을 바꿀 수 있나요?</b>네. 대상과 기관 목적에 맞춰 예시와 활동을 조정합니다.</div>
+          <div><b>Q. 인터넷이 안 되는 곳에서도 되나요?</b>버크만·퍼스널컬러 강의는 종이 활동지와 진단 키트로 가능합니다. 노트미 강의(04·05)는 인터넷이 필요합니다.</div>
+          <div><b>Q. 기관에서 준비할 것이 있나요?</b>강의는 빔프로젝터·스크린과 마이크, 체험 부스는 책상 1개, 의자, 전원 콘센트가 필요합니다.</div>
+          <div><b>Q. 일정이 바뀌면 어떻게 하나요?</b>미리 연락 주시면 가능한 날짜로 다시 정합니다.</div>
+          <div><b>Q. 비용은 얼마인가요?</b>모든 강의 비용은 협의로 정합니다. 연락 주시면 견적을 보내 드립니다.</div>
+        </div>
+      </div>
+      <div class="pf-block">
+        <div class="pf-contact"><span><b>문의</b> 강사 김민철</span><span><b>전화</b> 010-2861-8616</span><span><b>이메일</b> kmc1050@gmail.com</span><span><b>인스타그램</b> @i.bang93</span></div>
+      </div>
+      <p class="pf-foot">강사 김민철 · 강의 제안서 3</p>
     </div>
   </article>
 </div>
 
 <script>
-  // 모바일 메뉴
   const burger = document.getElementById('burger');
   const menu = document.getElementById('menu');
   burger.addEventListener('click', () => menu.classList.toggle('open'));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 
-  // 스크롤 등장 효과
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // 후기 슬라이드
   const voices = [
     { t: '“정답을 주기보다, 스스로 찾는 질문을 드립니다.”', w: '강의에서 지키는 약속 1' },
     { t: '“직접 참여하며 배울 수 있는 활동을 구성합니다.”', w: '강의에서 지키는 약속 2' },
@@ -416,7 +658,6 @@
   show(0);
   setInterval(() => show((idx + 1) % voices.length), 4500);
 
-  // 문의 내용 복사
   document.getElementById('form').addEventListener('submit', e => {
     e.preventDefault();
     const text = '[강의 문의]\n기관명: ' + document.getElementById('org').value +
@@ -424,7 +665,7 @@
       '\n내용: ' + document.getElementById('memo').value;
     const msg = document.getElementById('msg');
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => { msg.textContent = '복사됐어요! 인스타그램 DM이나 블로그 댓글로 보내 주세요.'; })
+      navigator.clipboard.writeText(text).then(() => { msg.textContent = '복사됐어요! 문자, 이메일, 인스타그램 DM으로 보내 주세요.'; })
         .catch(() => { msg.textContent = '복사가 안 됐어요. 내용을 직접 보내 주세요.'; });
     } else {
       msg.textContent = '복사가 안 됐어요. 내용을 직접 보내 주세요.';
