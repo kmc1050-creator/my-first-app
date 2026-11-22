@@ -66,6 +66,7 @@
   .photo{border-radius:var(--radius);aspect-ratio:4/5;overflow:hidden;background:#dbe9f7;box-shadow:12px 12px 0 var(--sun)}
   .photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
   .quote{font-size:1.25rem;font-weight:700;line-height:1.6}
+  .quote .closing-quote{color:var(--coral);font-size:2.4rem;line-height:0;vertical-align:-14px;margin-left:4px}
   .quote::before{content:"“";color:var(--coral);font-size:2.4rem;line-height:0;vertical-align:-14px;margin-right:4px}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
   .chip{background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:12px;font-size:.92rem}
@@ -246,7 +247,7 @@
       <div class="intro">
         <div class="photo reveal"><img src="profile.jpg" alt="김민철 강사 프로필 사진" loading="lazy"></div>
         <div class="reveal">
-          <p class="quote">사람들과 만나고, 함께 이야기하며 강의하는 시간이 즐겁습니다. 참여자들이 자신을 새롭게 발견하는 순간을 함께하고 싶습니다.</p>
+          <p class="quote">사람들과 만나고, 함께 이야기하며 강의하는 시간이 즐겁습니다. 참여자들이 자신을 새롭게 발견하는 순간을 함께하고 싶습니다.<span class="closing-quote" aria-hidden="true">”</span></p>
           <p class="sec-sub" style="margin-top:16px">청소년지도학을 전공하고 4년 넘게 강의·캠프·행사를 기획하며 현장에서 청년과 청소년을 만나 왔습니다. </p>
           <div class="chips">
             <span class="chip">🎓 청소년지도학 전공</span>
