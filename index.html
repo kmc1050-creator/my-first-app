@@ -181,6 +181,14 @@
   textarea{min-height:100px;resize:vertical}
   form button{background:var(--coral);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s}
   form button:hover{background:#ed684a}
+  form{position:relative}
+  form button.send.submit{background:var(--coral);font-size:1.02rem;padding:16px}
+  form button.send.submit:hover{background:#ed684a}
+  form button.send.submit:disabled{opacity:.6;cursor:wait}
+  form button.send.alt{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  form button.send.alt:hover{border-color:var(--ink);background:#fff}
+  .msg.ok{background:#e7f7f4;color:#167a6e;border-radius:10px;padding:10px 12px}
+  .msg.err{background:#fff0eb;color:#c2492b;border-radius:10px;padding:10px 12px}
   .send-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   form button.send{padding:14px;border-radius:12px;border:0;font:inherit;font-weight:700;cursor:pointer;color:#fff}
   form button.send.sms{background:var(--coral)}
@@ -520,7 +528,7 @@
       <p class="sec-sub reveal">편한 방법으로 연락 주세요.</p>
       <div class="contact">
         <div class="links reveal">
-          <div class="links-intro"><span class="eyebrow">LET’S CONNECT</span><h3>함께 만들 강의를<br>이야기해요.</h3><p>대상, 인원, 날짜, 장소를 알려 주시면 맞는 강의를 안내드립니다.</p></div>
+          <div class="links-intro"><span class="eyebrow">LET’S CONNECT</span><h3>함께 만들 강의를<br>이야기해요.</h3><p>오른쪽 양식으로 바로 접수하거나, 편한 채널로 연락 주세요.</p></div>
           <a class="portfolio-contact-btn" href="?view=portfolio">강의 제안서 보기 <span>인쇄 · PDF 저장 가능 →</span></a>
           <a class="link-box" href="tel:01028618616"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span class="link-title">전화<small>010-2861-8616</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
           <a class="link-box k3" href="mailto:kmc1050@gmail.com"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="link-title">이메일<small>kmc1050@gmail.com</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
@@ -528,9 +536,10 @@
           <a class="link-box k2" href="https://blog.naver.com/kmc1500" target="_blank" rel="noopener"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h10M7 17h6"/></svg></span><span class="link-title">네이버 블로그<small>강의 후기 둘러보기</small></span><span class="link-arrow" aria-hidden="true">↗</span></a>
         </div>
         <form class="reveal" id="form">
-          <div class="form-heading"><h3>문의 내용 작성하기</h3><p>작성 후 버튼을 누르면 문자나 메일 앱이 내용이 채워진 상태로 열려요. 전송만 눌러 주세요.</p></div>
+          <div class="form-heading"><h3>강의 문의 접수</h3><p>작성 후 ‘문의 접수하기’를 누르면 바로 접수돼요. 확인 후 남겨 주신 연락처로 연락드릴게요.</p></div>
           <div><label for="org">기관명</label><input id="org" placeholder="예) ○○청년센터" required></div>
-          <div><label for="who">담당자 성함·연락처</label><input id="who" placeholder="예) 홍길동 / 010-0000-0000"></div>
+          <div><label for="who">담당자 성함·연락처</label><input id="who" placeholder="예) 홍길동 / 010-0000-0000 또는 이메일"></div>
+          <input id="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div><label for="type">희망 강의</label>
             <select id="type">
               <option>01 버크만 진단으로 알아보는 나의 흥미와 진로</option>
@@ -544,12 +553,13 @@
               <option>기타 / 상담 후 결정</option>
             </select></div>
           <div><label for="memo">문의 내용</label><textarea id="memo" placeholder="대상, 인원, 희망 날짜, 장소를 적어 주세요"></textarea></div>
+          <button type="submit" id="submitBtn" class="send submit">문의 접수하기</button>
+          <p class="copy-note">다른 방법으로 보내고 싶다면</p>
           <div class="send-btns">
-            <button type="button" id="sendSms" class="send sms">문자로 보내기</button>
-            <button type="button" id="sendMail" class="send mail">이메일로 보내기</button>
+            <button type="button" id="sendSms" class="send alt">문자로 보내기</button>
+            <button type="button" id="sendMail" class="send alt">이메일로 보내기</button>
           </div>
           <button type="button" id="copyBtn" class="copy-link">내용만 복사하기 (인스타그램 DM용)</button>
-          <p class="copy-note">버튼을 눌러도 자동으로 전송되지 않아요. 열린 앱에서 전송을 눌러야 문의가 도착해요.</p>
           <p class="msg" id="msg" role="status"></p>
         </form>
       </div>
@@ -707,8 +717,8 @@
       '\n내용: ' + (val('memo') || '-');
   }
   function ready(){
-    if(!val('org')){ msgEl.style.color = 'var(--coral)'; msgEl.textContent = '기관명을 적어 주세요.'; document.getElementById('org').focus(); return false; }
-    msgEl.style.color = ''; return true;
+    if(!val('org')){ msgEl.className = 'msg err'; msgEl.textContent = '기관명을 적어 주세요.'; document.getElementById('org').focus(); return false; }
+    msgEl.className = 'msg'; return true;
   }
   document.getElementById('sendSms').addEventListener('click', () => {
     if(!ready()) return;
@@ -722,7 +732,33 @@
     location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(buildText());
     msgEl.textContent = '메일 앱이 열리면 전송을 눌러 주세요. 열리지 않으면 ' + EMAIL + ' 로 보내 주세요.';
   });
-  document.getElementById('form').addEventListener('submit', e => e.preventDefault());
+  const SB_URL = 'https://uixvdpuyrcupxnbuuxhk.supabase.co';
+  const SB_KEY = 'sb_publishable_ah0OqqqrvxLNmb6V6zOVnw_yj_QX4w4';
+  document.getElementById('form').addEventListener('submit', async e => {
+    e.preventDefault();
+    msgEl.className = 'msg';
+    if(!ready()) return;
+    if(!val('who')){ msgEl.className = 'msg err'; msgEl.textContent = '답변드릴 연락처를 적어 주세요.'; document.getElementById('who').focus(); return; }
+    if(val('hp')) return;
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = '접수 중...';
+    try {
+      const res = await fetch(SB_URL + '/rest/v1/inquiries', {
+        method: 'POST',
+        headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ org: val('org').slice(0,200), contact: val('who').slice(0,200), lecture: val('type').slice(0,200), message: val('memo').slice(0,3000) })
+      });
+      if(!res.ok) throw new Error(res.status);
+      msgEl.className = 'msg ok';
+      msgEl.textContent = '문의가 접수됐어요! 확인 후 남겨 주신 연락처로 연락드릴게요.';
+      ['org','who','memo'].forEach(id => document.getElementById(id).value = '');
+    } catch(err) {
+      msgEl.className = 'msg err';
+      msgEl.textContent = '접수 중 문제가 생겼어요. 아래 문자나 이메일 버튼으로 보내 주세요.';
+    } finally {
+      btn.disabled = false; btn.textContent = '문의 접수하기';
+    }
+  });
   document.getElementById('copyBtn').addEventListener('click', () => {
     if(!ready()) return;
     const text = buildText();
