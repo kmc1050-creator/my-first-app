@@ -189,6 +189,8 @@
   form button.send.alt:hover{border-color:var(--ink);background:#fff}
   .msg.ok{background:#e7f7f4;color:#167a6e;border-radius:10px;padding:10px 12px}
   .msg.err{background:#fff0eb;color:#c2492b;border-radius:10px;padding:10px 12px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media screen and (max-width:520px){.two-col{grid-template-columns:1fr}}
   .send-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   form button.send{padding:14px;border-radius:12px;border:0;font:inherit;font-weight:700;cursor:pointer;color:#fff}
   form button.send.sms{background:var(--coral)}
@@ -538,7 +540,10 @@
         <form class="reveal" id="form">
           <div class="form-heading"><h3>강의 문의 접수</h3><p>작성 후 ‘문의 접수하기’를 누르면 바로 접수돼요. 확인 후 남겨 주신 연락처로 연락드릴게요.</p></div>
           <div><label for="org">기관명</label><input id="org" placeholder="예) ○○청년센터" required></div>
-          <div><label for="who">담당자 성함·연락처</label><input id="who" placeholder="예) 홍길동 / 010-0000-0000 또는 이메일"></div>
+          <div class="two-col">
+            <div><label for="who">담당자 성함</label><input id="who" placeholder="예) 홍길동" autocomplete="name"></div>
+            <div><label for="phone">연락처</label><input id="phone" placeholder="예) 010-0000-0000 또는 이메일" autocomplete="tel"></div>
+          </div>
           <input id="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div><label for="type">희망 강의</label>
             <select id="type">
@@ -713,6 +718,7 @@
   function buildText(){
     return '[강의 문의]\n기관명: ' + val('org') +
       '\n담당자: ' + (val('who') || '-') +
+      '\n연락처: ' + (val('phone') || '-') +
       '\n희망 강의: ' + val('type') +
       '\n내용: ' + (val('memo') || '-');
   }
@@ -738,7 +744,8 @@
     e.preventDefault();
     msgEl.className = 'msg';
     if(!ready()) return;
-    if(!val('who')){ msgEl.className = 'msg err'; msgEl.textContent = '답변드릴 연락처를 적어 주세요.'; document.getElementById('who').focus(); return; }
+    if(!val('who')){ msgEl.className = 'msg err'; msgEl.textContent = '담당자 성함을 적어 주세요.'; document.getElementById('who').focus(); return; }
+    if(!val('phone')){ msgEl.className = 'msg err'; msgEl.textContent = '답변드릴 연락처를 적어 주세요.'; document.getElementById('phone').focus(); return; }
     if(val('hp')) return;
     const btn = document.getElementById('submitBtn');
     btn.disabled = true; btn.textContent = '접수 중...';
@@ -746,12 +753,12 @@
       const res = await fetch(SB_URL + '/rest/v1/inquiries', {
         method: 'POST',
         headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-        body: JSON.stringify({ org: val('org').slice(0,200), contact: val('who').slice(0,200), lecture: val('type').slice(0,200), message: val('memo').slice(0,3000) })
+        body: JSON.stringify({ org: val('org').slice(0,200), contact: (val('who') + ' / ' + val('phone')).slice(0,200), lecture: val('type').slice(0,200), message: val('memo').slice(0,3000) })
       });
       if(!res.ok) throw new Error(res.status);
       msgEl.className = 'msg ok';
       msgEl.textContent = '문의가 접수됐어요! 확인 후 남겨 주신 연락처로 연락드릴게요.';
-      ['org','who','memo'].forEach(id => document.getElementById(id).value = '');
+      ['org','who','phone','memo'].forEach(id => document.getElementById(id).value = '');
     } catch(err) {
       msgEl.className = 'msg err';
       msgEl.textContent = '접수 중 문제가 생겼어요. 아래 문자나 이메일 버튼으로 보내 주세요.';
